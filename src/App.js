@@ -7,6 +7,8 @@ import { Header } from './components/header';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import {Read} from './components/read';
+import {Create} from './components/create';
 
 import {
   BrowserRouter as Router,
@@ -23,15 +25,16 @@ class App extends React.Component {
           <Container>
             <Navbar.Brand href="/">Navbar</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/home">Home</Nav.Link>
               <Nav.Link href="/read">Read</Nav.Link>
               <Nav.Link href="/create">Create</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
       <Routes>
-        <Route path='/' element={<Content></Content>}></Route>
-        <Route path='/read' element={<Header></Header>}></Route>
+        <Route path='/home' element={<Content></Content>}></Route>
+        <Route path='/read' element={<Read></Read>}></Route>
+        <Route path='/create' element={<Create></Create>}></Route>
       </Routes>
         {/* <Header></Header>
         <Content></Content>
