@@ -1,43 +1,29 @@
 import React from "react";
 import { Books } from "./books";
+/*http client*/
+import axios from "axios";
 
 export class Read extends React.Component {
      /*content for books*/
-    state = {
-        books: [
-           
-            {
-                "title": "Learn Git in a Month of Lunches",
-                "isbn": "1617292419",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg",
-                "status": "MEAP",
-                "authors": ["Rick Umali"],
-                "categories": []
-            },
-            {
-                "title": "MongoDB in Action, Second Edition",
-                "isbn": "1617291609",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg", "status": "MEAP",
-                "authors": [
-                    "Kyle Banker",
-                    "Peter Bakkum",
-                    "Tim Hawkins",
-                    "Shaun Verch",
-                    "Douglas Garrett"
-                ], "categories": []
-            },
-            {
-                "title": "Getting MEAN with Mongo, Express, Angular, and Node",
-                "isbn": "1617292036",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg", "status": "MEAP",
-                "authors": ["Simon Holmes"],
-                "categories": []
-            }
-        ]
+     /*lifectcle method*/
+     componentDidMount() {
 
+        axios.get('https://jsonblob.com/api/jsonblob/1027219693823606784')
+
+     /*lambda expression*/
+     /*callback function/accepted path*/
+        .then((response)=>{
+            this.setState({
+                books: response.data
+            })
+        })
+        /*error response/rejected path*/
+        .catch(function(error){
+            console.log(error);
+        });
+    }
+    state = {
+        books: []
     }
     render() {
         return (
