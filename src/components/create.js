@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 export class Create extends React.Component {
 
@@ -21,6 +22,17 @@ export class Create extends React.Component {
         e.preventDefault();
         /*log new values*/
         console.log(`${this.state.title},${this.state.cover},${this.state.author}`);
+        
+        /*book object*/
+        const book = {
+            title: this.state.title,
+            cover: this.state.cover,
+            authoe: this.state.author
+        }
+
+        axios.post('http://localhost:4000/api/books',book)
+        .then()
+        .catch();
         /*set initial value*/
         this.setState({
             title:'',
