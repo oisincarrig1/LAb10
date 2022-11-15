@@ -6,7 +6,7 @@ export class Books extends React.Component{
         {/*create each book segment*/}
         return this.props.books.map(
             (book)=>{
-                return <BookItems book={book} key={book.isbn}></BookItems>
+                return <BookItems book={book} key={book._id}></BookItems>
             }
         );
        
