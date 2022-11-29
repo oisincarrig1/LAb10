@@ -49,6 +49,15 @@ app.get('/api/books',(req, res)=>{
   
 })
 
+app.put('/api/book/:id', (req, res) => {
+  console.log("Update: " + req.params.id);
+  console.log(req.body);
+  
+  bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, data)=>{
+    res.send(data);
+  })
+})
+
 app.get('/api/book/:id',(req, res)=>{
   console.log(req.params.id);
 
