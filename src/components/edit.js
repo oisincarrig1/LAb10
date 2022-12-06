@@ -20,7 +20,7 @@ export function Edit(props) {
         //axios is a promised based web client
         //make a HTTP Request with GET method and pass as part of the
         //url.
-        axios.get('http://localhost:4000/api/books/' + id)
+        axios.get('http://localhost:4000/api/book/' + id)
 
 
             .then((res) => {

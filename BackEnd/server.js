@@ -44,9 +44,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/api/books',(req, res)=>{
-  bookModel.find(error,data)
+  bookModel.find((error,data)=>{
     res.json(data);
-  
+  })
 })
 
 app.put('/api/book/:id', (req, res) => {
