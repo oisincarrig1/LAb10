@@ -4,14 +4,24 @@ const port = 4000
 
 const cors = require('cors');
 const bodyParser = require('body-parser')
-app.use(cors());
+
+//redundant due to build folder
+/*app.use(cors());
 app.use(function(req, res, next) {
 res.header("Access-Control-Allow-Origin", "*");
 res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
 res.header("Access-Control-Allow-Headers",
 "Origin, X-Requested-With, Content-Type, Accept");
 next();
-});
+});*/
+
+//server.js
+//add just under import section at the top of server,js
+// Serve the static files from the React app
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
 
 // getting-started.js
 const mongoose = require('mongoose');
@@ -78,6 +88,20 @@ app.post('/api/books',(req, res)=>{
     })
     res.send('Data recieved');
 })
+
+app.delete('/api/book/:id', (req, res)=>{
+  console.log("Deleting: " + req.params.id);
+
+  bookModel.findByIdAndDelete({_id: req.params.id}, (error, data)=>{
+    res.send(data);
+  })
+})
+
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+  });
+  
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
