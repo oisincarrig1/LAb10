@@ -1,26 +1,26 @@
 import React from "react";
-import { Books } from "./books";
+import { Games } from "./games";
 /*http client*/
 import axios from "axios";
 
-export class Read extends React.Component {
+export class Review extends React.Component {
 
     constructor(){
         super();
         this.ReloadData=this.ReloadData.bind(this);
     }
 
-     /*content for books*/
+     /*content for games*/
      /*lifectcle method*/
      componentDidMount() {
 
-        axios.get('http://localhost:4000/api/books')
+        axios.get('http://localhost:4000/api/games')
 
      /*lambda expression*/
      /*callback function/accepted path*/
         .then((response)=>{
             this.setState({
-                books: response.data
+                games: response.data
             })
         })
         /*error response/rejected path*/
@@ -30,13 +30,13 @@ export class Read extends React.Component {
     }
 
     ReloadData(){
-        axios.get('http://localhost:4000/api/books')
+        axios.get('http://localhost:4000/api/games')
 
      /*lambda expression*/
      /*callback function/accepted path*/
         .then((response)=>{
             this.setState({
-                books: response.data
+                games: response.data
             })
         })
         /*error response/rejected path*/
@@ -47,14 +47,14 @@ export class Read extends React.Component {
     }
 
     state = {
-        books: []
+        games: []
     }
     render() {
         return (
             <div>
                 
-                <h1>Hello from my Read component!</h1>
-                <Books books={this.state.books} ReloadData={this.ReloadData}></Books>
+                <h1>Recent game reviews:</h1>
+                <Games games={this.state.games} ReloadData={this.ReloadData}></Games>
             </div>
         );
     }

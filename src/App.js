@@ -7,8 +7,8 @@ import { Header } from './components/header';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import {Read} from './components/read';
-import {Create} from './components/create';
+import {Review} from './components/review';
+import {Upload} from './components/upload';
 import {Edit} from './components/edit';
 
 import {
@@ -24,18 +24,18 @@ class App extends React.Component {
       <div className="App">
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/">Navbar</Navbar.Brand>
+            <Navbar.Brand href="/">Game Review</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/home">Home</Nav.Link>
-              <Nav.Link href="/read">Read</Nav.Link>
-              <Nav.Link href="/create">Create</Nav.Link>
+              <Nav.Link href="/review">Reviews</Nav.Link>
+              <Nav.Link href="/upload">Upload</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
       <Routes>
         <Route path='/home' element={<Content></Content>}></Route>
-        <Route path='/read' element={<Read></Read>}></Route>
-        <Route path='/create' element={<Create></Create>}></Route>
+        <Route path='/review' element={<Review></Review>}></Route>
+        <Route path='/upload' element={<Upload></Upload>}></Route>
         <Route path='/edit/:id' element={<Edit></Edit>}></Route>
       </Routes>
         {/* <Header></Header>

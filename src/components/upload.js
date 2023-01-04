@@ -1,19 +1,19 @@
 import React from "react";
 import axios from "axios";
 
-export class Create extends React.Component {
+export class Upload extends React.Component {
 
     /*new instance of events*/
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
-        this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
-        this.onChangeCover = this.onChangeCover.bind(this);
+        this.onChangeGameTitle = this.onChangeGameTitle.bind(this);
+        this.onChangeGameYear = this.onChangeGameYear.bind(this);
+        this.onChangeScore = this.onChangeScore.bind(this);
         this.state = {
             title: '',
-            author:'',
-            cover:''
+            year:'',
+            score:''
         }
     }
 
@@ -21,78 +21,78 @@ export class Create extends React.Component {
         /*prevent calling multiple times*/
         e.preventDefault();
         /*log new values*/
-        console.log(`${this.state.title},${this.state.cover},${this.state.author}`);
+        console.log(`${this.state.title},${this.state.score},${this.state.year}`);
         
-        /*book object*/
-        const book = {
+        /*game object*/
+        const game = {
             title: this.state.title,
-            cover: this.state.cover,
-            authoe: this.state.author
+            cover: this.state.score,
+            author: this.state.year
         }
 
-        axios.post('http://localhost:4000/api/books',book)
+        axios.post('http://localhost:4000/api/games',game)
         .then()
         .catch();
         /*set initial value*/
         this.setState({
             title:'',
-            author:'',
-            cover:''
+            year:'',
+            score:''
         })
         
     }
-    /*event change book title*/
-    onChangeBookTitle(e) {
+    /*event change game title*/
+    onChangeGameTitle(e) {
         this.setState({
             title: e.target.value
         })
     }
 
-    /*event change book author*/
-    onChangeBookAuthor(e) {
+    /*event change game year*/
+    onChangeGameYear(e) {
         this.setState({
-            author: e.target.value
+            year: e.target.value
         })
     }
 
-    /*event change book cover*/
-    onChangeCover(e) {
+    /*event change game score*/
+    onChangeScore(e) {
         this.setState({
-            cover: e.target.value
+            score: e.target.value
         })
     }
 
     render() {
         return (
-            /*create form*/
+            /*update form*/
             <div>
-                <h3>Hello from my Create Component!</h3>
+                <h3>Hello from my Upload Component!</h3>
                 <form onSubmit={this.handleSubmit}>
-                    {/*create an add title bar*/}
+                    {/* add title bar*/}
                     <div className="form-group">
-                        <label>Add Book Title: </label>
+                        <label>Add Game Title: </label>
                         <input type="text"
                             className="form-control"
                             value={this.state.title}
-                            onChange={this.onChangeBookTitle}
+                            onChange={this.onChangeGameTitle}
                         />
                     </div>
-                    {/*create an add author bar*/}
+                    {/*create an add year bar*/}
                     <div className="form-group">
-                        <label>Add Author: </label>
+                        <label>Add Year: </label>
                         <input type="text"
                             className="form-control"
-                            value={this.state.author}
-                            onChange={this.onChangeBookAuthor}
+                            value={this.state.year}
+                            onChange={this.onChangeGameYear}
                         />
                     </div>
-                    {/*create a change cover bar*/}
+                    {/*create a change score bar*/}
                     <div className="form-group">
-                        <label>Change Cover: </label>
+                        <label>Score out of 100: </label>
                         <input type="text"
                             className="form-control"
-                            value={this.state.front}
-                            onChange={this.onChangeCover}
+                            value={this.state.score}
+                            onChange={this.onChangeScore}
                         />
                     </div>
 

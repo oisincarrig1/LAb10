@@ -35,14 +35,14 @@ async function main() {
 }
 
 //writing Schema
-const bookSchema = new mongoose.Schema({
+const gameSchema = new mongoose.Schema({
   title: String,
-  cover: String,
-  author: String
+  score: String,
+  year: String
 });
 
 //generate model
-const bookModel = mongoose.model('books', bookSchema);
+const gameModel = mongoose.model('games', gameSchema);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -53,46 +53,46 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/api/books',(req, res)=>{
-  bookModel.find((error,data)=>{
+app.get('/api/games',(req, res)=>{
+  gameModel.find((error,data)=>{
     res.json(data);
   })
 })
 
-app.put('/api/book/:id', (req, res) => {
+app.put('/api/game/:id', (req, res) => {
   console.log("Update: " + req.params.id);
   console.log(req.body);
   
-  bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, data)=>{
+  gameModel.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, data)=>{
     res.send(data);
   })
 })
 
-app.get('/api/book/:id',(req, res)=>{
+app.get('/api/game/:id',(req, res)=>{
   console.log(req.params.id);
 
-  bookModel.findById(req.params.id, (error, data)=>{
+  gameModel.findById(req.params.id, (error, data)=>{
     res.json(data);
   })
 })
 
 
 /*listen for data*/
-app.post('/api/books',(req, res)=>{
+app.post('/api/games',(req, res)=>{
     //console.log(req, body);
-    bookModel.create({
+    gameModel.create({
       title:req.body.title,
-      cover:req.body.cover,
-      author:req.body.author
+      score:req.body.score,
+      year:req.body.year
 
     })
     res.send('Data recieved');
 })
 
-app.delete('/api/book/:id', (req, res)=>{
+app.delete('/api/game/:id', (req, res)=>{
   console.log("Deleting: " + req.params.id);
 
-  bookModel.findByIdAndDelete({_id: req.params.id}, (error, data)=>{
+  gameModel.findByIdAndDelete({_id: req.params.id}, (error, data)=>{
     res.send(data);
   })
 })
